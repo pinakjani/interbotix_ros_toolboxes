@@ -53,10 +53,19 @@ _XSLOCOBOT_MODELS = (
     'locobot_wx250s',
 )
 
+_XSCOBOT_MODELS = (
+    'dx400',
+)
+
 
 def get_interbotix_xsarm_models() -> Tuple[str]:
     """Get the tuple of valid Interbotix X-Series arm models."""
     return _XSARM_MODELS
+
+def get_interbotix_xscobot_models() -> Tuple[str]:
+    """Get the tuple of valid Interbotix X-Series arm models."""
+    return _XSCOBOT_MODELS
+
 
 
 def get_interbotix_xslocobot_models() -> Tuple[str]:
@@ -83,3 +92,18 @@ def get_interbotix_xsarm_joints(robot_model: str) -> List[str]:
         ]
     else:
         raise KeyError(f'{robot_model} is not a valid robot model.')
+
+
+def get_interbotix_xscobot_joints(robot_model: str) -> List[str]:
+    """
+    Return a list of joints in the robot_model.
+
+    :param robot_model: The robot model to get the joints of
+    :return: A list of joint names of the given robot model
+    :raises: KeyError if the robot model is not valid
+    """
+    if robot_model in ('dx400'):
+        return ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'gripper']
+    else:
+        raise KeyError(f'{robot_model} is not a valid robot model.')
+
